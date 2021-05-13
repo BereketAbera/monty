@@ -1,4 +1,4 @@
-#include "holberton.h"
+#include "monty.h"
 
 /**
  * checkNumber - check if a string is a number

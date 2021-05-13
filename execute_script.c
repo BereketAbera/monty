@@ -1,4 +1,4 @@
-#include "holberton.h"
+#include "monty.h"
 
 /**
  * execute_script - execute monty script
