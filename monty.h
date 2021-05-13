@@ -64,5 +64,6 @@ void add(int line_number, char **tokens, char *line, char *input_str);
 void execute_arg1(int line_number, char **tokens, char *line, char *input_str);
 void execute_arg2(int line_number, char **tokens, char *line, char *input_str);
 void free_all(char **tokens, char *line, char *input_str);
+void execute_arg3p(int line_number, char **tokens, char *line, char *input_str);
 
 #endif
