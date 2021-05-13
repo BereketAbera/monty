@@ -3,6 +3,7 @@
 /**
  * read_textfile - react contents of a file
  * @filename: a file name to read
+ * @line: current line string
  *
  * Return: file content
  */

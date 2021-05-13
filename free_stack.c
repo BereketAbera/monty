@@ -13,7 +13,7 @@ void free_stack(void)
 	{
 		temp_stack = stack;
 		stack = stack->next;
-		free(temp_stack);	
+		free(temp_stack);
 	}
 
 	free(stack);
@@ -43,7 +43,7 @@ void free_memory_tokens(char **tokens)
  * free_all - free all variables
  * @tokens: line tokens
  * @line: current line
- * @inpput_str: total script string
+ * @input_str: total script string
  *
  * Return: nothing
  */

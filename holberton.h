@@ -49,7 +49,7 @@ char *_strdup(char *str);
 char **tokenize(char *input, char *separator, int length);
 int _tokenlen(char **tokens);
 int execute_script(char *filename);
-void *push(char *value, int line_number, char **tokens, char *line, char *input_str);
+void *push(char *value, int ln, char **tokens, char *line, char *input_str);
 void pall(void);
 int _pow(int base, int exp);
 int getNumericValue(char *token, int len);

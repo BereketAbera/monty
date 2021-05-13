@@ -8,9 +8,7 @@
  */
 int execute_script(char *filename)
 {
-	char *input_str = NULL;
-	char *line = NULL;
-	char **tokens = NULL;
+	char *input_str = NULL, *line = NULL, **tokens = NULL;
 	const int INITIAL_LINE_SIZE = 1024;
 	int index = 0, l_index = 0, line_number = 1;
 
@@ -20,7 +18,6 @@ int execute_script(char *filename)
 		free_stack();
 		exit(EXIT_FAILURE);
 	}
-
 	input_str = read_textfile(filename, line);
 	while (input_str[index] != '\0')
 	{
@@ -40,10 +37,7 @@ int execute_script(char *filename)
 		else if (tokens && _tokenlen(tokens) > 2)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, tokens[0]);
-			free_stack();
-			free_memory_tokens(tokens);
-			free(line);
-			free(input_str);
+			free_all(tokens, line, input_str);
 			exit(EXIT_FAILURE);
 		}
 		index++;
