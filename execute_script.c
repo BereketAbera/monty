@@ -63,6 +63,8 @@ void execute_arg1(int line_number, char **tokens, char *line, char *input_str)
 {
 	if (_strcmp(tokens[0], "pall") == 0)
 		pall();
+	else if (_strcmp(tokens[0], "push") == 0)
+		push(NULL, line_number, tokens, line, input_str);
 	else if (_strcmp(tokens[0], "pint") == 0)
 		pint(line_number, tokens, line, input_str);
 	else if (_strcmp(tokens[0], "pop") == 0)

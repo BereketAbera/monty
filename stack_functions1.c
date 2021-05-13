@@ -17,7 +17,7 @@ void *push(char *value, int ln, char **tokens, char *line, char *input_str)
 	stack_t *new_node;
 	int n;
 
-	if (checkNumber(value) == 0)
+	if (value == NULL || checkNumber(value) == 0)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", ln);
 		free_all(tokens, line, input_str);
