@@ -3,21 +3,6 @@
 stack_t *stack = NULL;
 
 /**
- * print_err - print error
- * @ln: line number
- * @tokens: line tokens
- * @line: current line string
- * @input_str: total script string
- *
- * Return: nothing
- */
-void print_err(int ln, char **tokens, char *line, char *input_str)
-{
-	fprintf(stderr, "L%d: usage: push integer\n", ln);
-	free_all(tokens, line, input_str);
-	exit(EXIT_FAILURE);
-}
-/**
  * push - add not to the top of the stack
  * @value: value of the new node
  * @ln: script line number
