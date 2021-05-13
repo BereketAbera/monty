@@ -59,7 +59,10 @@ char **tokenize(char *input, char *separator, int length)
 	{
 		tokens = malloc(sizeof(char *) * (length + 1));
 		if (tokens == NULL)
-			return (NULL);
+		{
+			fprintf(stderr, "Error: malloc failed");
+			exit(EXIT_FAILURE);
+		}
 		tmp = _strdup(input);
 		token = strtok(tmp, separator);
 		while (token)

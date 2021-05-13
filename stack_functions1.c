@@ -30,6 +30,7 @@ void *push(char *value, int ln, char **tokens, char *line, char *input_str)
 		if (stack == NULL)
 		{
 			free_all(tokens, line, input_str);
+			fprintf(stderr, "Error: malloc failed");
 			exit(EXIT_FAILURE);
 		}
 		stack->n = n;
@@ -39,6 +40,7 @@ void *push(char *value, int ln, char **tokens, char *line, char *input_str)
 	if (new_node == NULL)
 	{
 		free_all(tokens, line, input_str);
+		fprintf(stderr, "Error: malloc failed");
 		exit(EXIT_FAILURE);
 	}
 	new_node->n = n;

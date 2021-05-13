@@ -19,6 +19,7 @@ char *_strdup(char *str)
 	if (dup == NULL)
 	{
 		free(dup);
+		fprintf(stderr, "Error: malloc failed");
 		return (NULL);
 	}
 	while (str[i])
@@ -69,7 +70,10 @@ char *_strconcat(char *first_string, char *second_string)
 
 	concat_str = malloc((len + 1) * sizeof(char));
 	if (!concat_str)
-		return (NULL);
+	{
+		fprintf(stderr, "Error: malloc failed");
+		exit(EXIT_FAILURE);
+	}
 
 	while (first_string != NULL && first_string[ft_index] != '\0')
 	{

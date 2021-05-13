@@ -26,7 +26,11 @@ char *read_textfile(const char *filename, char *line)
 	}
 	buf = malloc(INITIAL_BUF_SIZE + 1);
 	if (buf == NULL)
-		return (NULL);
+	{
+		fprintf(stderr, "Error: malloc failed");
+		free(line);
+		exit(EXIT_FAILURE);
+	}
 
 	read_value = read(fd, buf, INITIAL_BUF_SIZE);
 

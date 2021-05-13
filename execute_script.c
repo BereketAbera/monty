@@ -16,6 +16,7 @@ int execute_script(char *filename)
 	if (line == NULL)
 	{
 		free_stack();
+		fprintf(stderr, "Error: malloc failed");
 		exit(EXIT_FAILURE);
 	}
 	input_str = read_textfile(filename, line);
