@@ -63,5 +63,6 @@ void swap(int line_number, char **tokens, char *line, char *input_str);
 void add(int line_number, char **tokens, char *line, char *input_str);
 void execute_arg(int line_number, char **tokens, char *line, char *input_str);
 void free_all(char **tokens, char *line, char *input_str);
+void print_err(int ln, char **tokens, char *line, char *input_str);
 
 #endif

@@ -3,6 +3,21 @@
 stack_t *stack = NULL;
 
 /**
+ * print_err - print error
+ * @ln: line number
+ * @tokens: line tokens
+ * @line: current line string
+ * @input_str: total script string
+ *
+ * Return: nothing
+ */
+void print_err(int ln, char **tokens, char *line, char *input_str)
+{
+	fprintf(stderr, "L%d: usage: push integer\n", ln);
+	free_all(tokens, line, input_str);
+	exit(EXIT_FAILURE);
+}
+/**
  * push - add not to the top of the stack
  * @value: value of the new node
  * @ln: script line number
@@ -16,21 +31,12 @@ void *push(char *value, int ln, char **tokens, char *line, char *input_str)
 {
 	stack_t *new_node;
 	int n;
-	
+
 	if (value == NULL)
-	{
-		fprintf(stderr, "L%d: usage: push integer\n", ln);
-		free_all(tokens, line, input_str);
-		exit(EXIT_FAILURE);
-	}
+		print_err(ln, tokens, line, input_str);
 	n = atoi(value);
 	if (n == 0 && checkNumber(value) == 0)
-	{
-		fprintf(stderr, "L%d: usage: push integer\n", ln);
-		free_all(tokens, line, input_str);
-		exit(EXIT_FAILURE);
-	}
-	printf("%d, %d\n", ln, n);
+		print_err(ln, tokens, line, input_str);
 	if (stack == NULL)
 	{
 		stack = malloc(sizeof(stack_t));
@@ -55,7 +61,6 @@ void *push(char *value, int ln, char **tokens, char *line, char *input_str)
 	if (stack != NULL)
 		stack->prev = new_node;
 	stack = new_node;
-
 	return (new_node);
 }
 
