@@ -31,12 +31,8 @@ int execute_script(char *filename)
 		}
 		line[l_index] = '\0';
 		tokens = tokenize(line, " \t", _strlen(line));
-		if (tokens && _tokenlen(tokens) == 2)
-			execute_arg2(line_number, tokens, line, input_str);
-		else if (tokens && _tokenlen(tokens) == 1)
-			execute_arg1(line_number, tokens, line, input_str);
-		else if (tokens && _tokenlen(tokens) > 2)
-			execute_arg3p(line_number, tokens, line, input_str);
+		if (tokens && _tokenlen(tokens) >= 1)
+			execute_arg(line_number, tokens, line, input_str);
 		index++;
 		line_number++;
 		free_memory_tokens(tokens);
@@ -47,7 +43,7 @@ int execute_script(char *filename)
 }
 
 /**
- * execute_arg3p - execute three or more argument commands
+ * execute_arg - execute one argument commands
  * @line_number: command line number
  * @tokens: line tokens
  * @line: current line
@@ -55,42 +51,15 @@ int execute_script(char *filename)
  *
  * Return: nothing
  */
-void execute_arg3p(int line_number, char **tokens, char *line, char *input_str)
-{
-	if (_strcmp(tokens[0], "push") == 0)
-		fprintf(stderr, "L%d: usage: push integer\n", line_number); 
-	else if (_strcmp(tokens[0], "pall") == 0)
-		fprintf(stderr, "L%d: usage: pall\n", line_number);
-	else if (_strcmp(tokens[0], "pop") == 0)
-		fprintf(stderr, "L%d: usage: pop\n", line_number);
-	else if (_strcmp(tokens[0], "pint") == 0)
-		fprintf(stderr, "L%d: usage: pint\n", line_number);
-	else if (_strcmp(tokens[0], "swap") == 0)
-		fprintf(stderr, "L%d: usage: swap\n", line_number);
-	else if (_strcmp(tokens[0], "add") == 0)
-		fprintf(stderr, "L%d: usage: add\n", line_number);
-	else if (_strcmp(tokens[0], "nop") == 0)
-		fprintf(stderr, "L%d: usage: nop\n", line_number);
-	else
-		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, tokens[0]);
-	free_all(tokens, line, input_str);
-	exit(EXIT_FAILURE);
-}
-/**
- * execute_arg1 - execute one argument commands
- * @line_number: command line number
- * @tokens: line tokens
- * @line: current line
- * @input_str: total script string
- *
- * Return: nothing
- */
-void execute_arg1(int line_number, char **tokens, char *line, char *input_str)
+void execute_arg(int line_number, char **tokens, char *line, char *input_str)
 {
 	if (_strcmp(tokens[0], "pall") == 0)
 		pall();
 	else if (_strcmp(tokens[0], "push") == 0)
-		push(NULL, line_number, tokens, line, input_str);
+		if (_tokenlen(tokens) == 1)
+			push(NULL, line_number, tokens, line, input_str);
+		else
+			push(tokens[1], line_number, tokens, line, input_str);
 	else if (_strcmp(tokens[0], "pint") == 0)
 		pint(line_number, tokens, line, input_str);
 	else if (_strcmp(tokens[0], "pop") == 0)
@@ -101,30 +70,6 @@ void execute_arg1(int line_number, char **tokens, char *line, char *input_str)
 		add(line_number, tokens, line, input_str);
 	else if (_strcmp(tokens[0], "nop") == 0)
 		;
-	else
-	{
-		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, tokens[0]);
-		free_stack();
-		free_memory_tokens(tokens);
-		free(line);
-		free(input_str);
-		exit(EXIT_FAILURE);
-	}
-}
-
-/**
- * execute_arg2 - execute two argument commands
- * @line_number: command line number
- * @tokens: line tokens
- * @line: current line
- * @input_str: total script string
- *
- * Return: nothing
- */
-void execute_arg2(int line_number, char **tokens, char *line, char *input_str)
-{
-	if (_strcmp(tokens[0], "push") == 0)
-		push(tokens[1], line_number, tokens, line, input_str);
 	else
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, tokens[0]);
