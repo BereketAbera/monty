@@ -16,14 +16,21 @@ void *push(char *value, int ln, char **tokens, char *line, char *input_str)
 {
 	stack_t *new_node;
 	int n;
-
-	if (value == NULL || checkNumber(value) == 0)
+	
+	if (value == NULL)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", ln);
 		free_all(tokens, line, input_str);
 		exit(EXIT_FAILURE);
 	}
 	n = atoi(value);
+	if (n == 0 && checkNumber(value) == 0)
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", ln);
+		free_all(tokens, line, input_str);
+		exit(EXIT_FAILURE);
+	}
+	printf("%d, %d\n", ln, n);
 	if (stack == NULL)
 	{
 		stack = malloc(sizeof(stack_t));
