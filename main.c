@@ -17,4 +17,6 @@ int main(int argc, char **argv)
 	}
 	execute_script(argv[1]);
 	free_stack();
+
+	return (0);
 }
