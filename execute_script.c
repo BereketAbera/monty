@@ -39,7 +39,7 @@ int execute_script(char *filename)
 			execute_arg1(line_number, tokens, line, input_str);
 		else if (tokens && _tokenlen(tokens) > 2)
 		{
-			printf("L%d: unknown instruction %s\n", line_number, tokens[0]);
+			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, tokens[0]);
 			free_stack();
 			free_memory_tokens(tokens);
 			free(line);
@@ -80,7 +80,7 @@ void execute_arg1(int line_number, char **tokens, char *line, char *input_str)
 		;
 	else
 	{
-		printf("L%d: unknown instruction %s\n", line_number, tokens[0]);
+		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, tokens[0]);
 		free_stack();
 		free_memory_tokens(tokens);
 		free(line);
@@ -104,7 +104,7 @@ void execute_arg2(int line_number, char **tokens, char *line, char *input_str)
 		push(tokens[1], line_number, tokens, line, input_str);
 	else
 	{
-		printf("L%d: unknown instruction %s\n", line_number, tokens[0]);
+		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, tokens[0]);
 		free_stack();
 		free_memory_tokens(tokens);
 		free(line);

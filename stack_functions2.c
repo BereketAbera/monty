@@ -15,7 +15,7 @@ void add(int line_number, char **tokens, char *line, char *input_str)
 
 	if (stack == NULL || stack->next == NULL)
 	{
-		printf("L%d: can't add, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
 		free_all(tokens, line, input_str);
 		exit(EXIT_FAILURE);
 	}

@@ -19,11 +19,11 @@ void *push(char *value, int ln, char **tokens, char *line, char *input_str)
 
 	if (checkNumber(value) == 0)
 	{
-		printf("L%d: usage: push integer\n", ln);
+		fprintf(stderr, "L%d: usage: push integer\n", ln);
 		free_all(tokens, line, input_str);
 		exit(EXIT_FAILURE);
 	}
-	n = getNumericValue(value, _strlen(value));
+	n = atoi(value);
 	if (stack == NULL)
 	{
 		stack = malloc(sizeof(stack_t));
@@ -83,7 +83,7 @@ void pint(int ln, char **tokens, char *line, char *input_str)
 		printf("%d\n", temp_node->n);
 	else
 	{
-		printf("L%d: can't pint, stack empty\n", ln);
+		fprintf(stderr, "L%d: can't pint, stack empty\n", ln);
 		free_all(tokens, line, input_str);
 		exit(EXIT_FAILURE);
 	}
@@ -102,7 +102,7 @@ void pop(int ln, char **tokens, char *line, char *input_str)
 {
 	if (stack == NULL)
 	{
-		printf("L%d: can't pop an empty stack\n", ln);
+		fprintf(stderr, "L%d: can't pop an empty stack\n", ln);
 		free_all(tokens, line, input_str);
 		exit(EXIT_FAILURE);
 	}
@@ -130,7 +130,7 @@ void swap(int ln, char **tokens, char *line, char *input_str)
 
 	if (stack == NULL || stack->next == NULL)
 	{
-		printf("L%d: can't swap, stack too short\n", ln);
+		fprintf(stderr, "L%d: can't swap, stack too short\n", ln);
 		free_all(tokens, line, input_str);
 		exit(EXIT_FAILURE);
 	}

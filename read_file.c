@@ -19,7 +19,7 @@ char *read_textfile(const char *filename, char *line)
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
-		printf("Error: Can't open file %s\n", filename);
+		fprintf(stderr, "Error: Can't open file %s\n", filename);
 		free(line);
 		exit(EXIT_FAILURE);
 	}
